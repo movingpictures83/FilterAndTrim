@@ -59,7 +59,10 @@ names(filtRs) <- sample.names
 out <- filterAndTrim(fnFs, filtFs, fnRs, filtRs, truncLen=c(truncForward, truncReverse), trimLeft = c(trimForward, trimReverse),
                      maxN=maxN, maxEE=maxEE, truncQ=truncQ, rm.phix=TRUE,
                      compress=TRUE, multithread=TRUE, n = 1e+09) # On Windows set multithread=FALSE
-saveRDS(out, paste(outputfile, "rds", sep="."))
+#saveRDS(out, paste(outputfile, "rds", sep="."))
+#print(typeof(out))
+#print(out)
+write.csv(out, paste(outputfile, "csv", sep="."))
 }
 
 
