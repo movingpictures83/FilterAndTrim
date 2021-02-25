@@ -1,0 +1,8 @@
+FASTQ	FASTQ/
+truncForward	250
+truncReverse	225
+trimForward	17
+trimReverse	21
+maxN	0
+maxEE	6
+truncQ	2

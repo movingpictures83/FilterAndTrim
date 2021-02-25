@@ -1,0 +1,2 @@
+Prefix plugins/FilterAndTrim/example/
+Plugin FilterAndTrim inputfile parameters.txt outputfile filtered
