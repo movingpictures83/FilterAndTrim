@@ -32,8 +32,8 @@ path <<- paste(pfix, fastqdir, sep="") # CHANGE ME to the directory containing t
 #print(path)
 
 # Forward and reverse fastq filenames have format: SAMPLENAME_R1_001.fastq and SAMPLENAME_R2_001.fastq
-fnFs <<- sort(list.files(path, pattern="_R1.fastq", full.names = TRUE))
-fnRs <<- sort(list.files(path, pattern="_R2.fastq", full.names = TRUE))
+fnFs <<- sort(list.files(path, pattern="_R1*.fastq", full.names = TRUE))
+fnRs <<- sort(list.files(path, pattern="_R2*.fastq", full.names = TRUE))
 
 #print(fnFs)
 #print(fnRs)
@@ -53,9 +53,9 @@ names(filtFs) <- sample.names
 names(filtRs) <- sample.names
 
 #print(fnFs)
-#print(filtFs)
+print(filtFs)
 #print(fnRs)
-#print(filtRs)
+print(filtRs)
 out <- filterAndTrim(fnFs, filtFs, fnRs, filtRs, truncLen=c(truncForward, truncReverse), trimLeft = c(trimForward, trimReverse),
                      maxN=maxN, maxEE=maxEE, truncQ=truncQ, rm.phix=TRUE,
                      compress=TRUE, multithread=TRUE, n = 1e+09) # On Windows set multithread=FALSE
