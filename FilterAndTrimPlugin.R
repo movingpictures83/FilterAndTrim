@@ -32,8 +32,8 @@ path <<- paste(pfix, fastqdir, sep="") # CHANGE ME to the directory containing t
 #print(path)
 
 # Forward and reverse fastq filenames have format: SAMPLENAME_R1_001.fastq and SAMPLENAME_R2_001.fastq
-fnFs <<- sort(list.files(path, pattern="_R1*.fastq", full.names = TRUE))
-fnRs <<- sort(list.files(path, pattern="_R2*.fastq", full.names = TRUE))
+fnFs <<- sort(list.files(path, pattern="_R1_001.fastq", full.names = TRUE))
+fnRs <<- sort(list.files(path, pattern="_R2_001.fastq", full.names = TRUE))
 
 #print(fnFs)
 #print(fnRs)
