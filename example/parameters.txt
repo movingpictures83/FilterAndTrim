@@ -1,4 +1,4 @@
-FASTQ	FASTQ/
+FASTQ	plugins/FilterAndTrim/example/FASTQ/
 truncForward	250
 truncReverse	225
 trimForward	17
