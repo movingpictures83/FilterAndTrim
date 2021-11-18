@@ -26,6 +26,8 @@ input <- function(inputfile) {
   maxN <<- 0
   maxEE <<- Inf
   truncQ <<- 2
+  minLen <<- 20
+
   ###############################################################
   print(typeof(parameters))
   if ("truncForward" %in% rownames(parameters)) {
@@ -49,22 +51,25 @@ input <- function(inputfile) {
   if ("truncQ" %in% rownames(parameters)) {
   truncQ	<<- as.integer(parameters["truncQ", 2])
   }
+  if ("minLen" %in% rownames(parameters)) {
+  minLen	<<- as.integer(parameters["minLen", 2])
+  }
 }
 
 run <- function() {
 #path <<- paste(pfix, fastqdir, sep="") # CHANGE ME to the directory containing the fastq files after unzipping.
 path <<- fastqdir
 #print(list.files(path))
-#print(path)
+print(path)
 
 # Forward and reverse fastq filenames have format: SAMPLENAME_R1_001.fastq and SAMPLENAME_R2_001.fastq
-fnFs <<- sort(list.files(path, pattern="-R1.fastq", full.names = TRUE))
-fnRs <<- sort(list.files(path, pattern="-R2.fastq", full.names = TRUE))
+fnFs <<- sort(list.files(path, pattern="_R1.fastq", full.names = TRUE))
+fnRs <<- sort(list.files(path, pattern="_R2.fastq", full.names = TRUE))
 
-#print(fnFs)
-#print(fnRs)
+print(fnFs)
+print(fnRs)
 # Extract sample names, assuming filenames have format: SAMPLENAME_XXX.fastq
-sample.names <<- sapply(strsplit(basename(fnFs), "-"), `[`, 1)
+sample.names <<- sapply(strsplit(basename(fnFs), "_"), `[`, 1)
 
 #Inspect read quality profiles------------------
 
@@ -81,7 +86,7 @@ names(filtRs) <- sample.names
 #print(fnFs)
 #print(fnRs)
 out <- filterAndTrim(fnFs, filtFs, fnRs, filtRs, truncLen=c(truncForward, truncReverse), trimLeft = c(trimForward, trimReverse),
-                     maxN=maxN, maxEE=maxEE, truncQ=truncQ, rm.phix=TRUE,
+                     maxN=maxN, maxEE=maxEE, truncQ=truncQ, minLen=minLen, rm.phix=TRUE,
                      compress=TRUE, multithread=TRUE, n = 1e+09) # On Windows set multithread=FALSE
 #saveRDS(out, paste(outputfile, "rds", sep="."))
 #print(typeof(out))
